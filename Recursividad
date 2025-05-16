@@ -1,0 +1,67 @@
+Recursividad
+
+import time
+def Countdown(number):
+    if number==0:
+        return
+    else:
+        print(number)
+        time.sleep(1)
+        Countdown(number-1)
+        return
+        
+Countdown(120)
+
+
+Otra recursividad
+
+def sumar(number):
+    if number==1:
+        return 1
+    return number + sumar(number - 1)
+
+print(sumar(100)) 
+
+
+busqueda binaria no recursiva
+
+def binarySearch(A, target):
+    indexHigh = len(A) - 1
+    indexLow = 0
+
+    while indexLow <= indexHigh:
+        indexMid = (indexLow + indexHigh) // 2
+        if A[indexMid] == target:
+            return indexMid
+        elif A[indexMid] < target:
+            indexLow = indexMid + 1
+        else:
+            indexHigh = indexMid - 1
+
+    return -1
+
+resultado = binarySearch([1,2,3,4,5,6,7,8,9,10], 4)
+print(resultado)
+
+
+busqueda binaria recursiva
+
+def binarySearchRecursive(A, target, indexLow=0, indexHigh=None):
+    if indexHigh is None:
+        indexHigh = len(A) - 1
+
+    if indexLow > indexHigh:
+        return -1  # Caso base: el elemento no está en la lista
+
+    indexMid = (indexLow + indexHigh) // 2
+
+    if A[indexMid] == target:
+        return indexMid
+    elif A[indexMid] < target:
+        return binarySearchRecursive(A, target, indexMid + 1, indexHigh)
+    else:
+        return binarySearchRecursive(A, target, indexLow, indexMid - 1)
+
+# Ejemplo de uso
+resultado = binarySearchRecursive([1,2,3,4,5,6,7,8,9,10], 4)
+print(resultado)
